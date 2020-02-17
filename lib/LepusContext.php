@@ -73,7 +73,7 @@ class LepusContext implements Context
     {
         $message = new AMQPMessage($string->getRaw());
 
-        $this->channel->basic_publish($message, '', $queue);
+        $this->connection->channel()->basic_publish($message, '', $queue);
     }
 
     /**
