@@ -43,7 +43,7 @@ class LepusContext implements Context
      */
     public function thereIsAQueue($queue)
     {
-        $this->channel->queue_declare($queue);
+        $this->channel->queue_declare($queue, false, true, false, false);
     }
 
     /**
