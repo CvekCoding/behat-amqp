@@ -98,4 +98,29 @@ class LepusContext implements Context
         }
         $this->channel->wait(null, false, 4);
     }
+
+    /**
+     * @Then the message in queue :queue contains
+     *
+     * @param              $queue
+     * @param PyStringNode $string
+     */
+    public function theMessageInQueueContains($queue, PyStringNode $string = null)
+    {
+        $expected = $string ? $string->getRaw() : null;
+
+        if (null === $expected) {
+            $this->channel->basic_consume($queue);
+        } else {
+            $consumer = function (AMQPMessage $message) use ($expected) {
+                $this->channel->basic_ack($message->delivery_info['delivery_tag']);
+
+                if (0 === substr_count($message->getBody(), $expected)) {
+                    throw new \InvalidArgumentException(sprintf('Substring %s was not found in %s', $expected, $message->getBody()));
+                }
+            };
+            $this->channel->basic_consume($queue, '', false, true, false, false, $consumer);
+        }
+        $this->channel->wait(null, false, 4);
+    }
 }
