@@ -84,6 +84,7 @@ class LepusContext implements Context
      */
     public function thereShouldBeAMessageInQueue($queue, PyStringNode $string = null)
     {
+        $this->connection->reconnect();
         $this->channel = $this->connection->channel();
 
         $expected = $string ? $string->getRaw() : null;
@@ -109,6 +110,7 @@ class LepusContext implements Context
      */
     public function theMessageInQueueContains($queue, PyStringNode $string = null)
     {
+        $this->connection->reconnect();
         $this->channel = $this->connection->channel();
 
         $expected = $string ? $string->getRaw() : null;
