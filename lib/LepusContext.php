@@ -103,6 +103,15 @@ class LepusContext implements Context
     }
 
     /**
+     * @Given queue :queue bound to exchange :exchange with :key
+     * @Given queue :queue bound to exchange :exchange
+     */
+    public function queueBoundToExchange($queue, $exchange, $key = null)
+    {
+        $this->channel->queue_bind($queue, $exchange, $key ?? $queue);
+    }
+
+    /**
      * @Then the message in queue :queue contains
      *
      * @param              $queue
