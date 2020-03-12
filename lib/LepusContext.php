@@ -77,6 +77,16 @@ class LepusContext implements Context
     }
 
     /**
+     * @When I send a message to exchange :queue with key :key
+     */
+    public function iSendAMessageToExchangeWithKey($exchange, string $key, PyStringNode $string)
+    {
+        $message = new AMQPMessage($string->getRaw());
+
+        $this->connection->channel()->basic_publish($message, $exchange, $key);
+    }
+
+    /**
      * @Then there should be a message in queue :queue
      *
      * @param              $queue
