@@ -1,5 +1,5 @@
 {
-    "name": "lepus/lepus",
+    "name": "cvek/behat-amqp",
     "description": "Behat extention for RabbitMQ",
     "keywords": [
         "behat",
@@ -18,8 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Lepus\\": "lib/",
-            "Lepus\\Tests\\": "tests/"
+            "Cvek\\BehatAmqp\\": "lib/"
         }
     }
 }

@@ -1,14 +1,6 @@
 <?php
 
-/**
- * This file is part of Lepus.
- *
- * (c) Sascha Schimke <sascha@schimke.me>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace Lepus;
+namespace Cvek\BehatAmqp;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
@@ -91,6 +83,8 @@ class LepusContext implements Context
      *
      * @param              $queue
      * @param PyStringNode $string
+     *
+     * @throws \ErrorException
      */
     public function thereShouldBeAMessageInQueue($queue, PyStringNode $string = null)
     {
@@ -126,6 +120,8 @@ class LepusContext implements Context
      *
      * @param              $queue
      * @param PyStringNode $string
+     *
+     * @throws \ErrorException
      */
     public function theMessageInQueueContains($queue, PyStringNode $string = null)
     {
