@@ -5,8 +5,4 @@ default:
                 - Lepus\LepusContext
 
     extensions:
-        Lepus\LepusExtension:
-            host: hawk.rmq.cloudamqp.com
-            vhost: gqrrpurq
-            user: gqrrpurq
-            password: jgLERb_FmJZ5Rzpn2pe3hW6CYTOsykbc
+        Lepus\LepusExtension: ~
